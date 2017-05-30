@@ -1,0 +1,83 @@
+<md-content ng-class="{'enlargedView' : user.cookRole}">
+<div ng-show="error" class="alert alert-danger row">
+    <span>{{ error.message }}</span>
+</div>
+
+<form ng-submit="register()" layout="column">
+    <div style="text-align: center; opacity: 1; z-index: 100; margin-bottom: 2.5%">
+        <h1 > Join Us, and Eat It!</h1>
+    </div>
+    <div layout="column" layout-align="center center" class="loginBack">
+        <div class="registerTop">
+            <div>
+                <md-input-container>
+                    <label>User Name</label>
+                    <input ng-model="user.username">
+                </md-input-container>
+
+                <md-input-container>
+                    <label>Password</label>
+                    <input type="password" ng-model="user.password">
+                </md-input-container>
+
+                <md-input-container>
+                    <label>Full Name</label>
+                    <input ng-model="user.fullName">
+                </md-input-container>
+            </div>
+            <div>
+                <md-input-container>
+                    <label>E-Mail</label>
+                    <input type="email" ng-model="user.email">
+                </md-input-container>
+
+                <md-input-container>
+                    <label>Address</label>
+                    <input type="text" ng-model="user.address">
+                </md-input-container>
+
+                <md-input-container>
+                    <label>Profile Picture URL</label>
+                    <input type="url" ng-model="user.picUrl">
+                </md-input-container>
+            </div>
+            <div>
+                <md-datepicker class="md-primary" ng-model="user.birthDate" md-placeholder="Birth Date"></md-datepicker>
+
+                <md-input-container >
+                    <md-checkbox ng-model="user.cookRole" aria-label="Cook?">
+                        I Want to cook!
+                    </md-checkbox>
+                </md-input-container>
+            </div>
+            <md-button ng-hide="user.cookRole" type="submit" class="md-primary md-raised md-block" flex="">Register</md-button>
+        </div>
+
+        <div class="registerTop" ng-hide="!user.cookRole">
+            <div >
+                <md-input-container flex class="md-block">
+                    <label>About yourself</label>
+                    <textarea ng-model="user.about" md-maxlength="150" rows="3" md-select-on-focus=""></textarea>
+                </md-input-container>
+
+
+                <md-input-container flex="" class="md-block">
+                    <label>Delivering to cities</label>
+                    <md-select ng-model="user.distributionArea" multiple="true">
+                        <md-option ng-value="city" ng-repeat="city in cities">{{city}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <br>
+                <md-input-container flex="" class="md-block">
+                    <label>Favourite Genre</label>
+                    <md-select ng-model="user.genre" multiple="false">
+                        <md-option ng-value="genre" ng-repeat="genre in genres">{{genre}}</md-option>
+                    </md-select>
+                </md-input-container>
+
+            </div>
+            <md-button  type="submit" class="md-primary md-raised md-block" flex="">Register</md-button>
+        </div>
+    </div>
+</form>
+</md-content>

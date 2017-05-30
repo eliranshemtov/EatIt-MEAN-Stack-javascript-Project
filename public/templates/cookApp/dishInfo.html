@@ -1,0 +1,63 @@
+<md-content ng-controller="dishesCtrl">
+<div>
+    <h1> Dish Info! </h1>
+</div>
+
+
+
+<md-card class="myDishesCard">
+    <md-toolbar class="md-primary">
+                <span id="dishName">
+                    <b>{{dish.name}}</b>
+                </span>
+    </md-toolbar>
+
+
+    <div class="dishCardContent" >
+                <span layout="row" layout-align="start center">
+                    <div class="picPlaceHolder">
+                        <img ng-src="{{dish.imgUrl}}" class="myAvatar" alt="{{dish.name}}">
+                    </div>
+                         <h3>Price: &nbsp;&nbsp; </h3> ${{dish.price}} <br>
+
+                </span>
+
+        <span layout="row" layout-align="start center" class="furtherDetails">
+                    <h3>Course Type: &nbsp;&nbsp; </h3> {{dish.course}} <br>
+                </span>
+        <span layout="row" layout-align="start center" class="furtherDetails">
+                    <h3>Genre: &nbsp;&nbsp; </h3> {{dish.genre}} <br>
+                </span>
+        <span layout="row" layout-align="start center" class="furtherDetails">
+                    <h3>#Diners: &nbsp;&nbsp; </h3> {{dish.diners}}
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <h3>Size(L): &nbsp;&nbsp; </h3> {{dish.dishSize}}
+                </span>
+        <span ng-hide="dish.specialCheck==false" layout="row" layout-align="start center" class="furtherDetails">
+                    <h3>Special Ingredients: &nbsp;&nbsp; </h3> <span ng-repeat="ing in dish.specialingredients"> {{ing}}</span> <br>
+                </span>
+
+        <span layout="row" layout-align="start center" class="furtherDetails">
+                    <h3>Delivering To: &nbsp;&nbsp; </h3> <span ng-repeat="city in dish.city"> {{city}} <br></span> <br>
+                </span>
+
+        <span layout="row" layout-align="start center" class="furtherDetails">
+                    <h3>How To Store: &nbsp;&nbsp; </h3> {{dish.storage}} <br>
+                </span>
+        <span layout="row" layout-align="start center" class="furtherDetails">
+                    <h3>How To Serve: &nbsp;&nbsp; </h3> {{dish.instructions}} <br>
+                </span>
+
+        <span layout="row" layout-align="start center" style="margin-left: 5%">
+                    <h3>Served In: &nbsp;&nbsp; </h3> {{dish.startDate | date}} &nbsp;<b>To:</b>&nbsp; {{dish.endDate | date}} <br>
+                </span>
+
+        <span layout="row"  style="margin-top: 5%">
+                    <md-icon class="md-avatar-icon"  ng-click="changeAmount(-1)"><i class="material-icons" style="font-size: 24px;">remove_circle_outline</i></md-icon>
+                    <h1>{{orderAmount}}</h1>
+                    <md-icon class="md-avatar-icon" ng-click="changeAmount(+1)"><i class="material-icons" style="font-size: 24px;">add_circle_outline</i></md-icon>
+                    <md-icon class="md-avatar-icon" ng-click="submitOrder()"><i class="material-icons" style="font-size: 48px; margin-top: -10px">add_shopping_cart</i></md-icon>
+                </span>
+    </div>
+</md-card>
+</md-content>

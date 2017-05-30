@@ -1,0 +1,48 @@
+<md-content ng-controller="cookCtrl">
+    <div layout="row" flex  class="options" >
+        <md-card class="option" ui-sref="newDish">
+            <img ng-src="/resources/chef1.png" class="md-card-image">
+            <h2><span>Create New Dish</span></h2>
+        </md-card>
+
+        <md-card class="option" ui-sref="pendingDishes">
+            <img ng-src="/resources/chef2.jpg" class="md-card-image">
+            <h2><span>Pending Dishs</span></h2>
+        </md-card>
+
+        <md-card class="option" ui-sref="myDishes({userId: loggedInUser})">
+            <img ng-src="/resources/chef3.png" class="md-card-image">
+            <h2><span>My Dishes</span></h2>
+        </md-card>
+
+        <md-card class="option" ui-sref="getSupport">
+            <img ng-src="/resources/chef4.png" class="md-card-image">
+            <h2><span>Get Support</span></h2>
+        </md-card>
+    </div>
+
+
+    <div >
+        <md-card class="mapContainer recepiePuppyCard">
+            <md-toolbar>
+                <h3> Live Activity </h3>
+            </md-toolbar>
+
+            <div class="padded5" layout="column">
+                <!--<h3  ng-repeat="user in activity">{{user.name}} has posted a new dish!</h3>-->
+
+                <md-list class="md-dense" flex="">
+                    <md-list-item class="md-2-line" ng-repeat="user in activity">
+                        <md-icon style="color: green"><i class="material-icons">fiber_new</i></md-icon>
+                        <div class="md-list-item-text" layout="column">
+                            <h2 style="color: #607D8B">{{ user.name }} has posted a new dish!</h2>
+                        </div>
+                    </md-list-item>
+                </md-list>
+
+
+            </div>
+        </md-card>
+
+    </div>
+</md-content>

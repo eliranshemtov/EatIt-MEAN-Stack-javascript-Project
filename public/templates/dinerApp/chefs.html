@@ -1,0 +1,102 @@
+
+<md-content>
+
+    <!--SEARCH-->
+    <div layout="row" class="searchBar">
+    <md-input-container class="md-block" flex="">
+        <label>Cuisine Type</label>
+        <md-select ng-model="searchGenre">
+            <md-option ng-repeat="genre in genres" value="{{genre}}">
+                {{genre}}
+            </md-option>
+        </md-select>
+    </md-input-container>
+
+    <md-input-container class="md-block" flex="">
+        <label>Ships To</label>
+        <md-select ng-model="searchCity">
+            <md-option ng-repeat="city in cities" value="{{city}}">
+                {{city}}
+            </md-option>
+        </md-select>
+    </md-input-container>
+
+        <md-input-container class="md-block" flex="">
+            <label>Dishes Repertoire</label>
+            <input ng-model="searchDishesAmount" type="number">
+        </md-input-container>
+
+        <md-icon class="md-avatar-icon" ng-click="search()"><i class="material-icons" style="font-size: 48px; margin-top: -50px">search</i></md-icon>
+        <md-icon class="md-avatar-icon" ng-click="clearSearch()"><i class="material-icons" style="font-size: 48px; margin-top: -50px; margin-left: 25px">clear</i></md-icon>
+    </div>
+
+    <h1 style="margin-left: 2.5%">Chefs Who EatIt!</h1>
+    <div layout="row">
+        <md-list flex="" class="myDishesList">
+            <md-subheader class="md-no-sticky">Pick a dish to see it's details</md-subheader>
+            <md-list-item class="md-3-line" ng-repeat="user in allUsers" ng-click="getSpecificUser(user._id)" ng-show="user.cookRole">
+                <!--<md-list-item class="md-3-line" ng-repeat="d in dishesByUserContainer" href="#/dishInfo/{{d._id}}">-->
+                <img ng-src="{{user.picUrl}}" class="md-avatar" alt="{{user.username}}">
+                <div class="md-list-item-text" layout="column">
+                    <h3><b>{{user.fullName}}</b> &nbsp;&nbsp; Cuisine: {{user.genre}}</h3>
+                    <span layout="row">
+                        Ships To:  <span ng-repeat="dist in user.distributionArea">{{ dist  }} &nbsp; </span>
+                        <span ng-show="user.cooksDishes.length > 0">
+                            {{user.cooksDishes.length}} &nbsp; Dishes
+                        </span>
+                    </span>
+                    <p>{{ user.about }}</p>
+                </div>
+            </md-list-item>
+        </md-list>
+
+        <md-card class="myDishesCard">
+            <md-toolbar class="md-primary">
+                <span id="dishName">
+                    <b>{{user.fullName}}</b>
+                </span>
+            </md-toolbar>
+
+            <div class="dishCardContent" ng-hide="user == null">
+                <span layout="row" layout-align="start center">
+                    <div class="picPlaceHolder">
+                        <img ng-src="{{user.picUrl}}" class="myAvatar" alt="{{user.username}}">
+                    </div>
+                         <h3>Cooks &nbsp;&nbsp; </h3> {{user.cooksDishes.length}} dishes <br>
+
+                </span>
+
+                <span layout="row" layout-align="start center" class="furtherDetails">
+                    <h3>Cuisine Type: &nbsp;&nbsp; </h3> {{user.genre}} <br>
+                </span>
+                <span layout="row" layout-align="start center" class="furtherDetails">
+                    <h3>Ships To: &nbsp;&nbsp; </h3> <span ng-repeat="dist in user.distributionArea"> {{dist}} &nbsp; </span><br>
+                </span>
+                <span layout="row" layout-align="start center" class="furtherDetails">
+                    <h3>Age: &nbsp;&nbsp; </h3> {{user.birthDate | date}}
+                </span>
+                <span ng-hide="dish.specialCheck==false" layout="row" layout-align="start center" class="furtherDetails">
+                    <h3>About: &nbsp;&nbsp; </h3> {{user.about}} <br>
+                </span>
+
+                <span layout="row" layout-align="start center" class="furtherDetails">
+                    <h3>From: &nbsp;&nbsp; </h3> {{user.address}} <br>
+                </span>
+                <span layout-align="center center" layout="row">
+                    <md-button class="md-accent md-raised md-block"  flex="" ui-sref="myDishes({userId: user._id})">
+                        Test {{user.fullName}}'s Dishes
+                    </md-button>
+                </span>
+            </div>
+        </md-card>
+    </div>
+
+    <div ng-show="dishesByUserContainer == 0">
+        <h1 style="margin-left: 5%">
+            The user doesn't offer any dishes for sale
+        </h1>
+    </div>
+</md-content>
+
+
+

@@ -1,0 +1,104 @@
+<md-card class="newDishFormCard">
+<form name="newDishForm">
+    <div ng-controller="dishesCtrl" layout="column" ng-cloak="" class="md-inline-form" ng-app="MyApp">
+        <md-content  md-theme="docs-dark" layout="row" layout-padding="">
+            <div class="dishFormTop" layout="row" flex="" >
+                <md-input-container>
+                    <label>Dish Name</label>
+                    <input ng-model="dish.name">
+                </md-input-container>
+
+                <md-input-container class="md-block" flex="">
+                    <label>Course Type</label>
+                    <md-select ng-model="dish.course">
+                        <md-option ng-repeat="course in courses" value="{{course}}">
+                            {{course}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container class="md-block" flex="">
+                    <label>Genre</label>
+                    <md-select ng-model="dish.genre">
+                        <md-option ng-repeat="genre in genres" value="{{genre}}">
+                            {{genre}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+        </md-content>
+
+
+            <div>
+                <div layout="row">
+                    <md-input-container flex="" >
+                        <label>Dish Description</label>
+                        <input md-maxlength="70" required="" md-no-asterisk="" name="dishDescription" ng-model="dish.description">
+                        <div ng-messages="userForm.description.$error">
+                            <div ng-message="required">Required field</div>
+                            <div ng-message="md-maxlength">Cut it up to 70 characters long.</div>
+                        </div>
+                    </md-input-container>
+
+                    <md-datepicker class="md-primary" ng-model="dish.startDate" md-placeholder="Start Date"></md-datepicker>
+                    <md-datepicker class="md-primary" ng-model="dish.endDate" md-placeholder="End Date"></md-datepicker>
+                </div>
+
+                <div flex="" class="md-block" layout="row" >
+                    <md-input-container >
+                        <label>Delivering to cities</label>
+                        <md-select ng-model="dish.city" multiple="">
+                            <md-option ng-value="city" ng-repeat="city in cities">{{city}}</md-option>
+                        </md-select>
+                    </md-input-container>
+
+                    <md-input-container >
+                        <label>Price in USD</label>
+                        <input type="number" ng-model="dish.price">
+                    </md-input-container>
+
+                    <md-input-container >
+                        <label>Dish Size (liters)</label>
+                        <md-select ng-model="dish.dishSize">
+                            <md-option ng-value="size" ng-repeat="size in amounts">{{size}}</md-option>
+                        </md-select>
+                    </md-input-container>
+
+                    <md-input-container >
+                        <label>Diners</label>
+                        <md-select ng-model="dish.diners" >
+                            <md-option ng-value="amount" ng-repeat="amount in amounts">{{amount}}</md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                <md-input-container class="md-block">
+                    <label>Picture URL</label>
+                    <input type="url" ng-model="dish.imgUrl">
+                </md-input-container>
+                <div layout="row" flex="">
+                    <md-input-container class="md-block">
+                        <md-checkbox ng-model="dish.specialCheck" aria-label="special ingredients">
+                            Special Ingredients
+                        </md-checkbox>
+                    </md-input-container>
+
+                    <md-input-container class="md-block" ng-show="dish.specialCheck != false" flex class="md-block" style="margin-left: 0.5%; margin-top: 2%">
+                        <label>Special Ingredients</label>
+                        <input ng-model="dish.specialingredients">
+                    </md-input-container>
+                </div>
+                <div layout="row" flex="">
+                    <md-input-container flex class="md-block">
+                        <label>Serving Instructions</label>
+                        <textarea ng-model="dish.instructions" md-maxlength="150" rows="3" md-select-on-focus=""></textarea>
+                    </md-input-container>
+                    <md-input-container flex class="md-block">
+                        <label>Storage Instructions</label>
+                        <textarea ng-model="dish.storage" md-maxlength="150" rows="3" md-select-on-focus=""></textarea>
+                    </md-input-container>
+                </div>
+            </div>
+        <md-button class="md-primary md-raised" ng-click="submit()">Start Cooking!</md-button>
+    </div>
+
+</form>
+</md-card>

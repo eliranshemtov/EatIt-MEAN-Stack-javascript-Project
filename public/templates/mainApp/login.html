@@ -1,0 +1,35 @@
+
+<div class="loginBack">
+    <div class="login">
+        <md-toolbar class="md-primary">
+            <h2 class="md-toolbar-tools">
+                <span>Sign In</span>
+            </h2>
+        </md-toolbar>
+
+        <form ng-submit="logIn()">
+            <md-input-container class="md-icon-float md-block">
+                <label>UserName</label>
+                <md-icon  class="text"> <i class="material-icons">email</i></md-icon>
+                <input ng-model="user.username" type="text" ng-required="true">
+            </md-input-container>
+
+            <md-input-container class="md-icon-float md-block">
+                <label>Password</label>
+                <md-icon  class="pass"> <i class="material-icons">fingerprint</i></md-icon>
+                <input ng-model="user.password" type="password" ng-required="true">
+            </md-input-container>
+
+            <div layout="row" class="md-button-group">
+                <md-button type="submit" class="md-raised md-primary">Login</md-button>
+                <md-button ui-sref="register" class="md-raised md-primary">I'm new</md-button>
+            </div>
+
+            <md-toolbar class="md-warn" ng-show="error">
+                <h2 class="md-toolbar-tools">
+                    <md-button class="md-primary" ng-disabled="true" flex>{{ error.message }}</md-button>
+                </h2>
+            </md-toolbar>
+        </form>
+    </div>
+</div>

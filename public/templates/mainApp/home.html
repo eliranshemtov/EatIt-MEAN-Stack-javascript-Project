@@ -1,0 +1,28 @@
+
+<div class="loginBack">
+    <div ng-hide="isLoggedIn()">
+        <md-card class="cardCenter" style="padding:2%; text-align: center">
+            <h1>Take Action!</h1>
+            <span layout="row">
+            <md-button class="md-primary md-raised" flex ui-sref="login">LogIn</md-button>
+            <md-button class="md-accent md-raised" flex ui-sref="register">Register</md-button>
+        </span>
+        </md-card>
+    </div>
+
+    <div ng-show="isLoggedIn()">
+        <br><br><br>
+        <md-card class="cardCenter">
+            <h1>What do you want to do?</h1>
+            <span layout="row" layout-align="center center">
+                <md-button ng-click="cook()" class="md-primary md-raised">Cook!</md-button>
+                <md-button ng-click="diner()" class="md-accent md-raised">Eat!</md-button>
+                <md-button ng-click="admin()" class="md-active md-raised">Stats!</md-button>
+            </span>
+        </md-card>
+    </div>
+
+
+
+</div>
+

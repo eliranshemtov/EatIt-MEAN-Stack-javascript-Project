@@ -1,0 +1,154 @@
+
+<md-content ng-controller="dishesCtrl">
+    <h1 style="margin-left: 2.5%"> {{user.username}}'s dishes</h1>
+
+
+    <!--SEARCH-->
+    <div layout="row" class="searchBar" ng-hide="user.username!='EatIt'">
+        <md-input-container class="md-block" flex="">
+            <label>Cuisine</label>
+            <md-select ng-model="searchGenre">
+                <md-option ng-repeat="genre in genres" value="{{genre}}">
+                    {{genre}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+
+        <md-input-container class="md-block" flex="">
+            <label>Ships To</label>
+            <md-select ng-model="searchCity">
+                <md-option ng-repeat="city in cities" value="{{city}}">
+                    {{city}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+
+        <md-input-container class="md-block" flex="">
+            <label>Course</label>
+            <md-select ng-model="courseType">
+                <md-option ng-repeat="course in courses" value="{{course}}">
+                    {{course}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+
+        <md-input-container class="md-block" flex="">
+            <label>Price ($)</label>
+            <input ng-model="price" type="number" min="1">
+        </md-input-container>
+
+        <md-icon class="md-avatar-icon" ng-click="search()"><i class="material-icons" style="font-size: 48px; margin-top: -50px">search</i></md-icon>
+        <md-icon class="md-avatar-icon" ng-click="clearSearch()"><i class="material-icons" style="font-size: 48px; margin-top: -50px; margin-left: 25px">clear</i></md-icon>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <!--DISHES LIST-->
+    <div ng-show="dishesByUserContainer.length > 0" layout="row">
+        <md-list flex="" class="myDishesList">
+            <md-subheader class="md-no-sticky">Pick a dish to see it's details</md-subheader>
+            <md-list-item class="md-3-line" ng-repeat="d in dishesByUserContainer" ng-click="specificDish(d._id)">
+                <!--<md-list-item class="md-3-line" ng-repeat="d in dishesByUserContainer" href="#/dishInfo/{{d._id}}">-->
+                <img ng-src="{{d.imgUrl}}" class="md-avatar" alt="{{d.name}}">
+                <div class="md-list-item-text" layout="column">
+                    <h3>{{d.name}} &nbsp;&nbsp; <b>${{d.price}}</b></h3>
+                    <h4>{{ d.genre }} | {{ d.course}}</h4>
+                    <p>{{ d.description }}</p>
+                </div>
+            </md-list-item>
+        </md-list>
+
+
+
+        <md-card class="myDishesCard">
+            <md-toolbar class="md-primary">
+                <span id="dishName">
+                    <b>{{dish.name}}</b>
+                </span>
+            </md-toolbar>
+
+            <div class="dishCardContent" ng-show="dish==null">
+                <h1> Click On a dish & EatIt!</h1>
+            </div>
+
+            <div class="dishCardContent" ng-hide="dish == null">
+                <span layout="row" layout-align="start center">
+                    <div class="picPlaceHolder">
+                        <img ng-src="{{dish.imgUrl}}" class="myAvatar" alt="{{dish.name}}">
+                    </div>
+                         <h3>Price: &nbsp;&nbsp; </h3> ${{dish.price}} <br>
+
+                </span>
+
+                <span layout="row" layout-align="start center" class="furtherDetails">
+                    <h3>Course Type: &nbsp;&nbsp; </h3> {{dish.course}} <br>
+                </span>
+                <span layout="row" layout-align="start center" class="furtherDetails">
+                    <h3>Genre: &nbsp;&nbsp; </h3> {{dish.genre}} <br>
+                </span>
+                <span layout="row" layout-align="start center" class="furtherDetails">
+                    <h3>#Diners: &nbsp;&nbsp; </h3> {{dish.diners}}
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <h3>Size(L): &nbsp;&nbsp; </h3> {{dish.dishSize}}
+                </span>
+                <span ng-hide="dish.specialCheck==false" layout="row" layout-align="start center" class="furtherDetails">
+                    <h3>Special Ingredients: &nbsp;&nbsp; </h3> <span ng-repeat="ing in dish.specialingredients"> {{ing}}</span> <br>
+                </span>
+
+                <span layout="row" layout-align="start center" class="furtherDetails">
+                    <h3>Delivering To: &nbsp;&nbsp; </h3> <span ng-repeat="city in dish.city"> {{city}} <br></span> <br>
+                </span>
+
+                <span layout="row" layout-align="start center" class="furtherDetails">
+                    <h3>How To Store: &nbsp;&nbsp; </h3> {{dish.storage}} <br>
+                </span>
+                <span layout="row" layout-align="start center" class="furtherDetails">
+                    <h3>How To Serve: &nbsp;&nbsp; </h3> {{dish.instructions}} <br>
+                </span>
+
+                <span layout="row" layout-align="start center" style="margin-left: 5%">
+                    <h3>Served In: &nbsp;&nbsp; </h3> {{dish.startDate | date}} &nbsp;<b>To:</b>&nbsp; {{dish.endDate | date}} <br>
+                </span>
+
+                <span layout="row" ng-show="showBuyOption" style="margin-top: 5%">
+                    <md-icon class="md-avatar-icon"  ng-click="changeAmount(-1)"><i class="material-icons" style="font-size: 24px;">remove_circle_outline</i></md-icon>
+                    <h1>{{orderAmount}}</h1>
+                    <md-icon class="md-avatar-icon" ng-click="changeAmount(+1)"><i class="material-icons" style="font-size: 24px;">add_circle_outline</i></md-icon>
+                    <md-icon class="md-avatar-icon" ng-click="submitOrder()"><i class="material-icons" style="font-size: 48px; margin-top: -10px">add_shopping_cart</i></md-icon>
+                </span>
+                <!--<table class="likeAndCommentTable">-->
+                    <!--<tr>-->
+                        <!--<td>-->
+                            <!--<md-icon><i class="material-icons">message</i></md-icon>-->
+                        <!--</td>-->
+                        <!--<td>-->
+                            <!--<div class="numberCircle"> {{ dish.upvotes}}</div>-->
+                        <!--</td>-->
+                        <!--<td>-->
+                            <!--<md-icon><i class="material-icons">thumb_up</i></md-icon>-->
+                        <!--</td>-->
+                        <!--<td>-->
+                            <!--<div class="numberCircle"> {{ dish.comments.length}}</div>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                <!--</table>-->
+            </div>
+        </md-card>
+    </div>
+
+    <div ng-show="dishesByUserContainer == 0">
+        <h1 style="margin-left: 5%">
+            No Dishes Here... Try another place :(
+        </h1>
+    </div>
+</md-content>
+
+
+

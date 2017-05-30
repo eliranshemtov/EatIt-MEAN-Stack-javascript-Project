@@ -1,0 +1,31 @@
+<div>
+    <h3>
+        <a ng-show="post.link" href="{{post.link}}"> {{post.title}}</a>
+        <span ng-hide="post.link">{{post.title}}</span>
+    </h3>
+</div>
+
+<div ng-repeat="comment in post.comments | orderBy: '-upvotes'">
+    <span ng-click="incrementUpvotes(comment)"><i class="material-icons">favorite</i></span>
+    {{comment.upvotes}} - by {{comment.author}}
+    <span style="font-size:20px; margin-left:10px;">
+      {{comment.body}}
+    </span>
+</div>
+
+
+<div ng-hide="isLoggedIn()">
+    <h3>You need to <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> before you can comment.</h3>
+</div>
+
+<form ng-submit="addComment()" ng-show="isLoggedIn()">
+    <h3>Add new comment</h3>
+
+    <div class="form-group">
+        <md-input-container>
+            <label>Comment</label>
+            <input ng-model="body">
+        </md-input-container>
+        <md-button class="md-primary md-raised" type="submit">POST</md-button>
+    </div>
+</form>

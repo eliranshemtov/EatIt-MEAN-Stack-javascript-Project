@@ -1,0 +1,44 @@
+<div class="loginBack">
+    <div ng-init="init()">
+
+         |  | {{user.shoppingCart}}
+
+    </div>
+
+
+    <md-card class="profileCardCenter">
+        <md-toolbar class="md-primary">
+            <span layout="row" layout-align="center center">
+                <img class="profilePic" ng-src="{{user.picUrl}}" >
+                <h1 style="margin-left: 2.5%"> {{user.username}} </h1>
+            </span>
+        </md-toolbar>
+
+
+        <span layout="row" layout-align="center center">
+            <h3>Full Name:</h3> {{user.fullName}} &nbsp;&nbsp; <h3>Email: </h3> {{user.email}}
+        </span>
+
+        <span layout="row" layout-align="center center">
+             <h3>Address: </h3> {{user.address}} &nbsp;&nbsp; <h3>Birth Date:</h3> {{user.birthDate | date}}
+        </span>
+
+        <span ng-show="user.hasOwnProperty('about')" layout="row" layout-align="center center">
+            <h3>About {{user.fullName}}:</h3> {{user.about}}
+        </span>
+
+        <span ng-show="user.hasOwnProperty('distributionArea') && user.distributionArea != ''" layout="row" layout-align="center center">
+            <h3>Distribution Area: </h3> <span ng-repeat="dist in user.distributionArea">{{dist}} &nbsp;</span>
+        </span>
+
+        <span ng-show="user.hasOwnProperty('genre')" layout="row" layout-align="center center">
+            <h3>Cook's Genre:</h3> {{user.genre}}
+        </span>
+<!--End Of user card buttons-->
+
+        <!--Show only if the user has pending dishes-->
+        <!--<md-button flex ng-show="user.pendingDishes.length > 0" class="md-warn" ng-click="showConfirm()" ng-controller="dinerCtrl"> Pending Dishes</md-button>-->
+        <!--<md-button flex class="md-accent md-raised" ui-sref="myDishes({userId: user._id})">{{user.username}}'s Dishes </md-button>-->
+
+    </md-card>
+</div>

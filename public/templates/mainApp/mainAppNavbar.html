@@ -1,0 +1,57 @@
+<md-toolbar class="md-primary" ng-controller="NavCtrl">
+    <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" aria-label="Settings" ng-disabled="navDisabled" ng-click="openLeftMenu()">
+            <md-icon><i class="material-icons">menu</i></md-icon>
+        </md-button>
+        <h4>
+            <span> &nbsp; EatIt. Eat Well. {{title}}</span>
+        </h4>
+        <span flex=""></span>
+        <md-button ng-hide="isLoggedIn()" ui-sref="login" class="md-icon-button" aria-label="Favorite">
+            <md-icon><i class="material-icons">offline_pin</i></md-icon>
+        </md-button>
+
+        <span ng-show="isLoggedIn()" ng-click="gotoLoggedUser()"> {{currentUser()}}</span>
+        <md-button ng-show="isLoggedIn()" ng-click="gotoLoggedUser()" class="md-icon-button" aria-label="Favorite">
+            <md-icon><i class="material-icons">person</i></md-icon>
+        </md-button>
+        <md-button ng-show="isLoggedIn()" class="md-icon-button" aria-label="More" ng-click="logOut()">
+            <md-icon><i class="material-icons">power_settings_new</i></md-icon>
+        </md-button>
+    </div>
+</md-toolbar>
+
+
+<md-sidenav md-component-id="left" md-is-open="isSidenavOpen" class="md-sidenav-left"  >
+
+    <md-toolbar class="md-hue-2 md-primary md-tall" >
+        <span layout="row" flex>
+            <h1 style="margin-left: 10%; margin-top: 18%">
+                Eat It!
+            </h1>
+            <md-icon class="md-avatar-icon" ><i class="material-icons" style="font-size: 48px;">restaurant</i></md-icon>
+        </span>
+    </md-toolbar>
+
+    <md-list >
+        <md-list-item class="md-3-line" ui-sref="home">
+            <md-icon class="md-avatar-icon"><i class="material-icons">home</i></md-icon>
+            <p>Home</p>
+        </md-list-item>
+
+        <md-list-item class="md-3-line" ui-sref="getSupport">
+            <md-icon class="md-avatar-icon"><i class="material-icons">live_help</i></md-icon>
+            <p>Get Support</p>
+        </md-list-item>
+
+        <md-list-item class="md-3-line" ng-click="navCtrl.gotoLoggedUser()">
+            <md-icon class="md-avatar-icon"><i class="material-icons">person</i></md-icon>
+            <p>Your Profile</p>
+        </md-list-item>
+
+        <md-list-item class="md-3-line" ui-sref="logout">
+            <md-icon class="md-avatar-icon"><i class="material-icons">power_settings_new</i></md-icon>
+            <p>Log Out</p>
+        </md-list-item>
+    </md-list>
+</md-sidenav>

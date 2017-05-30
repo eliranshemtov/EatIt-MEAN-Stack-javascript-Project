@@ -1,0 +1,60 @@
+<md-content layout="column" layout-align="center center">
+    <h1 class="shadow">Support Page</h1>
+    <div class="transitions"></div>
+
+    <div layout="row" class="">
+        <video width="600" controls autoplay loop>
+            <source src="resources/foodVideo.mp4" type="video/mp4">
+        </video>
+
+        <div layout="column" ng-show="isCookMode">
+            <img id="supportIcon" src="resources/supportIcon.gif" alt="Support Page Canvas" width="200" height="200" ng-hide="true">
+
+
+            <canvas id="myCanvas" width="200" height="200"
+                    style="border:1px solid #d3d3d3;">
+                Your browser does not support the HTML5 canvas tag.</canvas>
+
+            <md-button ng-click="myCanvas()">Draw On Canvas</md-button>
+        </div>
+    </div>
+
+    <div class="supportText">
+        <b>This test uses makes use of fontface and multiple columns </b>NOTE: This is a support text that i wrote and for EatIT... just kidding, it was copy pasted. forms will allow users to upload additional documents. If you do not see the upload interface on the online forms, then you are not allowed to upload additional files to your form.
+
+        To upload your essay or document, please follow the steps below:
+
+        Click on the Browse button (the button may also read as "Choose File" depending on the specific recommendation), select the file you are uploading, and click on Open.  The file name should appear in the textbox to the left of the Browse button.
+
+        Click on the red Upload  button to start the upload process
+
+        Your document or essay will be sent to our document processing servers.  A screen with the message, ""We are currently processing your document. Thank you for your patience."" will appear.
+
+        To view your uploaded document, click on the Preview  button
+
+        Please make sure that your file name does not contain any special characters: accents, tildes, symbols, etc. (e.g., è, é, ñ, &, *, #).  Additionally, please refrain from using non-English characters or digital signatures in the body of your essay as this may cause conversion errors.  Please limit your files to a maximum of 2MB (2048 KB) in size.
+        <aside> <br>
+            <b>This test uses ASIDE TAG </b>Uploading Documents with Special Characters or Formatting
+
+            To upload documents that contain special characters or formatting, you must upload the document in a PDF format.  Uploading Word documents that contains text with special characters may be changed and distorted in the process.  It is suggested that users convert word documents into a PDF format 7 or lower to upload these documents properly.
+        </aside>
+    </div>
+
+
+
+    <div style="margin: 5%">
+    NOTE: This is a support text that i wrote and for EatIT... just kidding, it was copy pasted. forms will allow users to upload additional documents. If you do not see the upload interface on the online forms, then you are not allowed to upload additional files to your form.
+
+    To upload your essay or document, please follow the steps below:
+
+    Click on the Browse button (the button may also read as "Choose File" depending on the specific recommendation), select the file you are uploading, and click on Open.  The file name should appear in the textbox to the left of the Browse button.
+<section>
+    <b>This test uses SECTION TAG </b> Click on the red Upload  button to start the upload process
+
+    Your document or essay will be sent to our document processing servers.  A screen with the message, ""We are currently processing your document. Thank you for your patience."" will appear.
+
+    To view your uploaded document, click on the Preview  button
+</section>
+    </div>
+</md-content>
+

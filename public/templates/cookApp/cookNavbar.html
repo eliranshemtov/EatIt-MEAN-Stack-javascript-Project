@@ -1,0 +1,69 @@
+<md-toolbar class="md-primary" ng-controller="cookNavCtrl">
+    <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" aria-label="Settings" ng-disabled="navDisabled" ng-click="openLeftMenu()">
+            <md-icon><i class="material-icons">menu</i></md-icon>
+        </md-button>
+        <h4>
+            <span>Hi, chef! {{title}}</span>
+        </h4>
+        <span flex=""></span>
+        <md-button ng-hide="isLoggedIn()" ui-sref="/" class="md-icon-button" aria-label="Favorite">
+            <md-icon><i class="material-icons">offline_pin</i></md-icon>
+        </md-button>
+
+        <span ng-show="isLoggedIn()" ui-sref="profile"> {{currentUser()}}</span>
+        <md-button ng-show="isLoggedIn()" ui-sref="profile" class="md-icon-button" aria-label="Favorite">
+            <md-icon><i class="material-icons">person</i></md-icon>
+        </md-button>
+        <md-button ng-show="isLoggedIn()" class="md-icon-button" aria-label="More" ng-click="logOut()">
+            <md-icon><i class="material-icons">power_settings_new</i></md-icon>
+        </md-button>
+    </div>
+</md-toolbar>
+
+
+<md-sidenav md-component-id="left" md-is-open="isSidenavOpen" class="md-sidenav-left" style="background: #607d8b">
+
+    <md-toolbar class="md-hue-2 md-primary md-tall" >
+            <h1>
+                <span> Eat It, chef!</span>
+            </h1>
+    </md-toolbar>
+
+    <md-list >
+        <md-list-item class="md-3-line" ui-sref="cook">
+            <md-icon class="md-avatar-icon"><i class="material-icons">home</i></md-icon>
+            <p>Home</p>
+        </md-list-item>
+
+        <md-list-item class="md-3-line" ui-sref="newDish">
+            <md-icon class="md-avatar-icon"><i class="material-icons">playlist_add</i></md-icon>
+            <p>Create New Dish</p>
+        </md-list-item>
+
+        <md-list-item class="md-3-line" ui-sref="myDishes">
+            <md-icon class="md-avatar-icon"><i class="material-icons">playlist_play</i></md-icon>
+            <p>My Dishes</p>
+        </md-list-item>
+
+        <md-list-item class="md-3-line" ui-sref="pendingDishes">
+            <md-icon class="md-avatar-icon"><i class="material-icons">timer</i></md-icon>
+            <p>Pending</p>
+        </md-list-item>
+
+        <md-list-item class="md-3-line" ui-sref="getSupport">
+            <md-icon class="md-avatar-icon"><i class="material-icons">live_help</i></md-icon>
+            <p>Get Support</p>
+        </md-list-item>
+
+        <md-list-item class="md-3-line" ui-sref="">
+            <md-icon class="md-avatar-icon"><i class="material-icons">person</i></md-icon>
+            <p>Your Profile</p>
+        </md-list-item>
+
+        <md-list-item class="md-3-line" ui-sref="logout">
+            <md-icon class="md-avatar-icon"><i class="material-icons">power_settings_new</i></md-icon>
+            <p>Log Out</p>
+        </md-list-item>
+    </md-list>
+</md-sidenav>
